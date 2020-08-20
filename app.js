@@ -3,10 +3,10 @@ const mysql = require("mysql");
 const Joi = require("joi");
 const cors = require('cors');
 const app = express();
-const mongoose = require("mongoose")
-require('dotenv/config')
-
-console.log(process.env.DB_Connection)
+const mongoose = require("mongoose");
+require('dotenv/config');
+const bodyParser= require('body-parser');
+app.use(bodyParser.json());
 
 
 
@@ -14,8 +14,10 @@ console.log(process.env.DB_Connection)
 mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true , useUnifiedTopology: true } ,() => console.log('connected to BD')).catch(error => handleError(error));
 const router = require("./server/routes/index");
 const routerCars = require('./server/routes/cars');
-app.use(router)
-app.use(routerCars)
+const UserRouter = require('./Routes/user');
+app.use(router);
+app.use(routerCars);
+app.use('/api/users',UserRouter);
 var mysqlConnection = mysql.createConnection({
 	connectionLimit:10,
 	password:'',
