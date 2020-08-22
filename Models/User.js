@@ -25,7 +25,26 @@ const UserSchema = mongoose.Schema(
         Created_date: {
             type : Date,
             default : Date.now()
-        }
+        },
+        Deleated_date: {
+            type : Date,
+            default : Date.now()
+        },
+        Telephoen: {
+            type : Number,
+            required : false
+        },
+        Cin: {
+            type : Number,
+            required : false
+        },
+        image: [ String ],
+        Roles: {
+            SuperUser : {type : Boolean  },
+            Admin : {type : Boolean  },
+            User : {type : Boolean  },
+        },
+
     }
 );
 

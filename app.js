@@ -15,9 +15,11 @@ mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true , useUnifiedT
 const router = require("./server/routes/index");
 const routerCars = require('./server/routes/cars');
 const UserRouter = require('./Routes/user');
+const CarRouter = require('./Routes/car');
 app.use(router);
 app.use(routerCars);
 app.use('/api/users',UserRouter);
+app.use('/api/car',CarRouter);
 var mysqlConnection = mysql.createConnection({
 	connectionLimit:10,
 	password:'',
