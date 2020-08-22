@@ -56,7 +56,8 @@ router.post('/login',async (req,res) =>
         var payload = {
             id: NewUser[0]._id,
         };
-        res.json({status:"ok" , message: 'Welcome Back', UserData : NewUser , token:123});
+        let token = jwt.sign(payload,process.env.token_Key);
+        res.json({status:"ok" , message: 'Welcome Back', UserData : NewUser , token:token});
     }catch (err) {
         res.json({ status:"err" ,message:err.message });
     }
